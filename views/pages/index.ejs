@@ -23,7 +23,12 @@
                     <td><%= url[1] %></td>
                     <td><%= url[2] %></td> 
                     <td><form method="POST" action="/<%= url[3] %>?_method=DELETE">
-                        <button id="<% url[3] %>" type="submit">Delete</button>
+                        <button id="<% url[3] %>" type="submit">Delete</button></form></td>
+                        <td><form method="POST" action="/<%= url[3] %>?_method=PUT">
+                             <input id="updatedUrl" name="updatedUrl" type="text" >
+                              <input id="updatedComment" name="updatedComment" type="text" >
+                                 <input id="updatedTags" name="updatedTags" type="text" >
+                        <button id="delete-<% url[3] %>-button" type="submit">Alter URL</button></form></td>
                 </tr>
                 <% }) %>
             </tr>
