@@ -1,5 +1,6 @@
 describe("Bookmark manager app", () => {
 	beforeEach(() => {
+		cy.task("resetDb");
 		cy.visit("/");
 	});
 
