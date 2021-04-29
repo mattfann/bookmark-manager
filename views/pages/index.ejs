@@ -8,31 +8,25 @@
 </head>
 <body>
     <form method="POST" action="/add">
-        <input name="url" type="text" >
-        <input name="comment" type="text" >
-        <input name="tags" type="text" >
-        <input type="submit" value="Submit Bookmark">
+        <input id="url" name="url" type="text" >
+        <input id="comment" name="comment" type="text" >
+        <input id="tags" name="tags" type="text" >
+        <input id="submit-button" type="submit" value="Submit Bookmark">
     </form>
     <table>
         <th>URL</th>
         <th>Comments</th>
         <th>Tags</th>
-        <th>ID</th>
             <tr>
                 <% bookmarkarray.forEach((url) => { %>
                     <tr>  <td><%= url[0] %></td>
                     <td><%= url[1] %></td>
                     <td><%= url[2] %></td> 
-                    <td><%= url[3] %></td>
-                    <td><form method="POST" action="/delete">
-                        <input name="id" type="text" id="fname">
+                    <td><form method="POST" action="/<%= url[3] %>?_method=DELETE">
                         <button id="<% url[3] %>" type="submit">Delete</button>
-                    </form></td>
                 </tr>
                 <% }) %>
             </tr>
-            
     </table>
-    
 </body>
 </html>

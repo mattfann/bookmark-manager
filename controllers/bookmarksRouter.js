@@ -7,7 +7,6 @@ const { models } = require('../models');
 bookmarksRouter.get('/', async (req, res) => {
     const bookmarks = await models.Bookmark.findAll();
     const array = [];
-    
     for(let i = 0; i < bookmarks.length; i++) {
         let url = bookmarks[i].dataValues.url;
         let comment = bookmarks[i].dataValues.comment;
@@ -17,7 +16,6 @@ bookmarksRouter.get('/', async (req, res) => {
         array.push([url,comment,tag, id]);
         
     };
-    
     res.render('pages/index', {
         bookmarkarray: array,
     }); 
@@ -31,9 +29,13 @@ bookmarksRouter.post('/add', async (req, res) => {
     res.redirect('/'); 
 })
 
-bookmarksRouter.post('/delete', async (req, res) => {
-    console.log(req.body.id)
-  // await models.Bookmark.destroy({idtodelete})
+bookmarksRouter.delete('/:bookmarkId', async (req, res) => {
+    await models.Bookmark.destroy({
+        where: {
+           id:  req.params.bookmarkId 
+        }
+    })
+
    res.redirect('/'); 
 })
 
@@ -42,4 +44,5 @@ bookmarksRouter.post('/delete', async (req, res) => {
 
 
 
-module.exports = bookmarksRouter;
+
+module.exports = bookmarksRouter
